@@ -1,19 +1,25 @@
-import { Move } from './move';
+import { Status } from './status';
+import { Move, compareMoves } from './move';
+import { compare } from './util';
 
-export type Player = {
-    name: string;
-    move: Move;
-    score: number;
-};
+export class Player {
+    constructor(
+        public name: string,
+        public score: number = 0,
+        public move?: Move
+    ) {}
+
+    compareMoveTo({ move }: Player) {
+        return compareMoves(this.move as any, move as any);
+    }
+
+    compareScoreTo({ score }: Player) {
+        return compare(this.score, score) as Status;
+    }
+}
 
 export type PlayerId = 'player1' | 'player2';
 
-const initPlayer = (name: string): Player => ({
-    name,
-    score: 0,
-    move: null as any,
-});
+export const USER = new Player('You');
 
-export const USER: Player = initPlayer('You');
-
-export const COMPUTER: Player = initPlayer('Computer');
+export const COMPUTER = new Player('Computer');
