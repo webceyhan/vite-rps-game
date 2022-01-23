@@ -1,27 +1,9 @@
 <script setup lang="ts">
 
 import { ref } from 'vue'
+import { moves, playRound } from './game';
 
-interface RuleMap {
-  [key: string]: { [key: string]: number }
-}
-
-const rules: RuleMap = {
-  // rock -> scissor -> paper
-  rock: { scissor: 1, paper: -1 },
-  scissor: { paper: 1, rock: -1 },
-  paper: { rock: 1, scissor: -1 },
-}
-
-const moves = Object.keys(rules);
-
-const randomMove = () => moves[Math.floor(Math.random() * moves.length)]
-
-const compareMoves = (a: string, b: string) => {
-  return rules[a][b] || 0;
-}
-
-const message = ref('start playing..')
+const roundMessage = ref('start playing..')
 
 const user = ref({
   score: 0,
@@ -35,24 +17,20 @@ const computer = ref({
 
 
 function onChoose(move: string) {
-  user.value.move = move;
-  computer.value.move = randomMove();
 
-  const result = compareMoves(move, computer.value.move);
+  const { playerMove, computerMove, status, message } = playRound(move);
 
-  switch (result) {
+  user.value.move = playerMove;
+  computer.value.move = computerMove;
+  roundMessage.value = message
+
+  switch (status) {
     case 1:
       user.value.score += 1;
-      message.value = 'You won!';
       break;
 
     case -1:
       computer.value.score += 1;
-      message.value = 'You lost!'
-      break;
-
-    default:
-      message.value = "It's a TIE!"
       break;
   }
 
@@ -104,7 +82,7 @@ function onChoose(move: string) {
       </div>
 
       <div class="row justify-content-between">
-        <h1 class="display-5">{{ message }}</h1>
+        <h1 class="display-5">{{ roundMessage }}</h1>
       </div>
     </div>
   </main>
