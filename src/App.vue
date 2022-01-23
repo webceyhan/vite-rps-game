@@ -1,39 +1,25 @@
 <script setup lang="ts">
 
-import { ref } from 'vue'
-import { moves, playRound } from './game';
+import { ref, reactive, watch } from 'vue'
+import { Game, MOVES } from './game';
 
-const roundMessage = ref('start playing..')
+// initialize game
+const game = reactive(new Game());
 
-const user = ref({
-  score: 0,
-  move: ''
-});
+// assign vars
+const player1 = ref(game.player1); // user
+const player2 = ref(game.player2); // computer
+const message = ref('');
+const round = ref(1);
 
-const computer = ref({
-  score: 0,
-  move: ''
+watch(game, () => {
+  // bugfix: workaround for ref(game.message) issue!
+  message.value = game.message
+  round.value = game.round;
 })
 
-
 function onChoose(move: string) {
-
-  const { playerMove, computerMove, status, message } = playRound(move);
-
-  user.value.move = playerMove;
-  computer.value.move = computerMove;
-  roundMessage.value = message
-
-  switch (status) {
-    case 1:
-      user.value.score += 1;
-      break;
-
-    case -1:
-      computer.value.score += 1;
-      break;
-  }
-
+  game.playRound(move as any);
 }
 
 </script>
@@ -42,17 +28,19 @@ function onChoose(move: string) {
   <main class="py-5 p-md-5">
     <div class="container-fluid text-center">
       <h1 class="display-1">Rock Paper Scissors</h1>
-
+      
       <hr class="mb-5" />
+      
+      <h5 class="display-5">Round {{round}}</h5>
 
       <div class="row align-items-center justify-content-between">
-        <!-- user score -->
+        <!-- player1 info -->
         <div class="col-6 col-md-3 order-md-1">
           <div class="card bg-secondary text-white">
             <div class="card-body">
-              <h4>You</h4>
-              <p class="display-3">{{ user.score }}</p>
-              <p class="text-capitalize bg-dark m-0">{{ user.move }}</p>
+              <h4>{{ player1.name }}</h4>
+              <p class="display-3">{{ player1.score }}</p>
+              <p class="text-capitalize bg-dark m-0">{{ player1.move }}</p>
             </div>
           </div>
         </div>
@@ -60,7 +48,7 @@ function onChoose(move: string) {
         <!-- game buttons -->
         <div class="col-12 col-md-6 d-flex order-1 order-md-2 py-5">
           <button
-            v-for="move in moves"
+            v-for="move in MOVES"
             :key="move"
             @click="onChoose(move)"
             class="btn btn-primary btn-img rounded-circle p-2 mx-2"
@@ -69,20 +57,20 @@ function onChoose(move: string) {
           </button>
         </div>
 
-        <!-- computer score -->
+        <!-- player2 info -->
         <div class="col-6 col-md-3 order-md-3">
           <div class="card bg-secondary text-white">
             <div class="card-body">
-              <h4>Computer</h4>
-              <p class="display-3">{{ computer.score }}</p>
-              <p class="text-capitalize bg-dark m-0">{{ computer.move }}</p>
+              <h4>{{ player2.name }}</h4>
+              <p class="display-3">{{ player2.score }}</p>
+              <p class="text-capitalize bg-dark m-0">{{ player2.move }}</p>
             </div>
           </div>
         </div>
       </div>
 
       <div class="row justify-content-between">
-        <h1 class="display-5">{{ roundMessage }}</h1>
+        <h1 class="display-5">{{ message }}</h1>
       </div>
     </div>
   </main>
