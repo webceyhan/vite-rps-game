@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, watch, computed } from 'vue'
 import { Game, MOVES } from './game';
 
 // initialize game
@@ -11,6 +11,7 @@ const round = ref(1);
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
+const progress = computed(() => `${(100 / 5) * round.value}%`);
 
 watch(game, () => {
   // bugfix: workaround for ref(game.message) issue!
@@ -33,6 +34,13 @@ function onChoose(move: string) {
       <hr class="mb-5" />
 
       <h5 class="display-5">Round {{ round }}</h5>
+
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped progress-bar-animated"
+          :style="{ width: progress }"
+        ></div>
+      </div>
 
       <div class="row align-items-center justify-content-between">
         <!-- player1 info -->
