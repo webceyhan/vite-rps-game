@@ -30,7 +30,7 @@ function onStart() {
   game.start();
 }
 
-function onChoose(move: string) {
+function onPlay(move: string) {
   game.playRound(move as any);
 }
 
@@ -53,7 +53,13 @@ function onChoose(move: string) {
 
         <!-- game buttons -->
         <div class="col-12 col-md-6 d-flex order-1 order-md-2 py-5">
-          <MoveButton v-for="move in MOVES" :key="move" :move="move" @click="onChoose(move)" />
+          <MoveButton
+            v-for="move in MOVES"
+            :key="move"
+            :move="move"
+            @click="onPlay(move)"
+            class="mx-1"
+          />
         </div>
 
         <!-- player2 info -->
@@ -74,9 +80,3 @@ function onChoose(move: string) {
     </div>
   </main>
 </template>
-
-<style>
-.btn-img:hover > img {
-  filter: opacity(0.9);
-}
-</style>
