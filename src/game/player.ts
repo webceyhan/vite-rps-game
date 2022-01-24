@@ -1,6 +1,7 @@
 import { Status } from './status';
 import { Move, compareMoves } from './move';
 import { compare } from './util';
+import { ROUND_MESSAGES, SCORE_MESSAGES } from './messages';
 
 export class Player {
     constructor(
@@ -9,12 +10,16 @@ export class Player {
         public move?: Move
     ) {}
 
-    compareMoveTo({ move }: Player) {
-        return compareMoves(this.move as any, move as any);
-    }
+    compareTo({ move, score }: Player) {
+        const moveStatus = compareMoves(this.move as any, move as any);
+        const scoreStatus = compare(this.score, score) as Status;
 
-    compareScoreTo({ score }: Player) {
-        return compare(this.score, score) as Status;
+        return {
+            moveStatus,
+            scoreStatus,
+            messagePerRound: ROUND_MESSAGES[moveStatus],
+            messagePerGame: SCORE_MESSAGES[scoreStatus]
+        };
     }
 }
 

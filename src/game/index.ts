@@ -1,7 +1,6 @@
 import { Status } from './status';
 import { Move, randomMove } from './move';
 import { COMPUTER, Player, PlayerId, USER } from './player';
-import { ROUND_MESSAGES, SCORE_MESSAGES } from './messages';
 
 export * from './move';
 
@@ -26,10 +25,11 @@ export class Game {
 
     nextRound() {
         // compare moves in behalf of player1
-        const roundStatus = this.player1.compareMoveTo(this.player2);
+        const { moveStatus, scoreStatus, messagePerRound, messagePerGame } =
+            this.player1.compareTo(this.player2);
 
         // process player scores
-        switch (roundStatus) {
+        switch (moveStatus) {
             case Status.Won:
                 this.player1.score++;
                 break;
@@ -39,17 +39,11 @@ export class Game {
                 break;
         }
 
-        // set status message
-        this.message = ROUND_MESSAGES[roundStatus];
+        // set status message depending on the game state
+        const lastRound = this.round === this.roundLimit;
+        this.message = lastRound ? messagePerGame : messagePerRound;
 
         // increase
         this.round++;
-
-        // finish game if limit reached
-        if (this.round > this.roundLimit) {
-            const scoreStatus = this.player1.compareScoreTo(this.player2);
-
-            this.message = SCORE_MESSAGES[scoreStatus];
-        }
     }
 }
