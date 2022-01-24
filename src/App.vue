@@ -8,13 +8,14 @@ const game = reactive(new Game());
 
 // assign vars
 const round = ref(1);
-const message = ref('');
+const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
 
 watch(game, () => {
   // bugfix: workaround for ref(game.message) issue!
-  message.value = game.message
+  message.value = game.message;
+  // messageColor.value = game.messageColor;
   round.value = game.round;
 })
 
@@ -28,10 +29,10 @@ function onChoose(move: string) {
   <main class="py-5 p-md-5">
     <div class="container-fluid text-center">
       <h1 class="display-1">Rock Paper Scissors</h1>
-      
+
       <hr class="mb-5" />
-      
-      <h5 class="display-5">Round {{round}}</h5>
+
+      <h5 class="display-5">Round {{ round }}</h5>
 
       <div class="row align-items-center justify-content-between">
         <!-- player1 info -->
@@ -70,7 +71,7 @@ function onChoose(move: string) {
       </div>
 
       <div class="row justify-content-between">
-        <h1 class="display-5">{{ message }}</h1>
+        <h1 class="display-5" :class="message.color">{{ message.text }}</h1>
       </div>
     </div>
   </main>

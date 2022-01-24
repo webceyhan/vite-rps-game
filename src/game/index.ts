@@ -1,14 +1,14 @@
 import { Status } from './status';
 import { Move, randomMove } from './move';
 import { Player, PlayerId, USER, COMPUTER } from './player';
-import { GAME_MESSAGES, ROUND_MESSAGES } from './messages';
+import { getRoundMessage, getGameMessage, INITIAL_MESSAGE } from './messages';
 
 export * from './move';
 
 export class Game {
     round = 1;
     roundLimit = 5;
-    message = 'start playing..';
+    message = INITIAL_MESSAGE;
     player1: Player = USER;
     player2: Player = COMPUTER;
     over = false;
@@ -60,7 +60,7 @@ export class Game {
 
         // set status message
         this.message = this.isLastRound
-            ? GAME_MESSAGES[scoreStatus]
-            : ROUND_MESSAGES[moveStatus];
+            ? getGameMessage(scoreStatus)
+            : getRoundMessage(moveStatus);
     }
 }
