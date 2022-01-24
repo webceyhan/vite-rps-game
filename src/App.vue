@@ -3,6 +3,7 @@
 import { ref, reactive, watch, computed } from 'vue'
 import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
+import MessageBar from './components/MessageBar.vue'
 import { Game, MOVES } from './game';
 
 // initialize game
@@ -62,7 +63,7 @@ function onChoose(move: string) {
       </div>
 
       <div class="row justify-content-between">
-        <h1 class="display-5" :class="message.color">{{ message.text }}</h1>
+        <MessageBar :message="message" />
       </div>
     </div>
   </main>
