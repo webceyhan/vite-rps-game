@@ -16,7 +16,7 @@ defineProps<{
       <span v-else>Round - {{ round }}</span>
     </h5>
 
-    <div class="progress">
+    <div class="progress bg-white bg-opacity-10">
       <div
         class="progress-bar progress-bar-striped progress-bar-animated"
         :style="{ width: `${progress}%` }"
