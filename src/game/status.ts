@@ -3,3 +3,9 @@ export enum Status {
     Even = 0,
     Lost = -1,
 }
+
+export const STATUS_COLORS = {
+    [Status.Lost]: 'danger',
+    [Status.Even]: 'warning',
+    [Status.Won]: 'success',
+};
