@@ -7,10 +7,10 @@ import { Game, MOVES } from './game';
 const game = reactive(new Game());
 
 // assign vars
+const round = ref(1);
+const message = ref('');
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
-const message = ref('');
-const round = ref(1);
 
 watch(game, () => {
   // bugfix: workaround for ref(game.message) issue!
