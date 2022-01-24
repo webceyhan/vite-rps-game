@@ -1,4 +1,4 @@
-import { random } from '../util';
+import { random } from '../../utils';
 import { Status } from '../status';
 import { RULES } from './rules';
 import { Move, MOVES } from './moves';

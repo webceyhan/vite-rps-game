@@ -1,6 +1,6 @@
 import { Status } from './status';
 import { Move, compareMoves } from './move';
-import { compare } from './util';
+import { compare } from '../utils';
 
 export class Player {
     constructor(
