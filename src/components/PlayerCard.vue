@@ -7,11 +7,12 @@ defineProps<{ player: Player }>()
 </script>
 
 <template>
-  <div class="card bg-secondary text-white">
+  <div class="card bg-dark text-muted border-primary border-2">
     <div class="card-body">
-      <h4>{{ player.name }}</h4>
-      <p class="display-3">{{ player.score }}</p>
-      <p class="text-capitalize bg-dark m-0">{{ player.move }}</p>
+      <h4 class="card-title text-uppercase">{{ player.name }}</h4>
+      <hr class="bg-primary" />
+      <p class="text-white display-4 mb-2">{{ player.score }}</p>
+      <p class="card-text text-capitalize" style="min-height:25px">{{ player.move }}</p>
     </div>
   </div>
 </template>
