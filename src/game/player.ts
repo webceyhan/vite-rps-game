@@ -15,6 +15,11 @@ export class Player {
             scoreStatus: compare(this.score, score) as Status,
         };
     }
+
+    reset() {
+        this.score = 0;
+        this.move = null as any;
+    }
 }
 
 export type PlayerId = 'player1' | 'player2';
