@@ -1,6 +1,7 @@
 import { Status } from './status';
 import { Move, randomMove } from './move';
-import { COMPUTER, Player, PlayerId, USER } from './player';
+import { Player, PlayerId, USER, COMPUTER } from './player';
+import { GAME_MESSAGES, ROUND_MESSAGES } from './messages';
 
 export * from './move';
 
@@ -42,8 +43,9 @@ export class Game {
 
     private processRound() {
         // compare moves in behalf of player1
-        const { moveStatus, scoreStatus, messagePerRound, messagePerGame } =
-            this.player1.compareTo(this.player2);
+        const { moveStatus, scoreStatus } = this.player1.compareTo(
+            this.player2
+        );
 
         // process player scores
         switch (moveStatus) {
@@ -56,7 +58,9 @@ export class Game {
                 break;
         }
 
-        // set status message depending on the game state
-        this.message = this.isLastRound ? messagePerGame : messagePerRound;
+        // set status message
+        this.message = this.isLastRound
+            ? GAME_MESSAGES[scoreStatus]
+            : ROUND_MESSAGES[moveStatus];
     }
 }
