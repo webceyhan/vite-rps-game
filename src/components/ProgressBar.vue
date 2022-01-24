@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 defineProps<{
+  over: boolean,
   round: number,
   progress: number
 }>()
@@ -9,7 +10,11 @@ defineProps<{
 
 <template>
   <div>
-    <h5 class="display-5 text-primary">Round - {{ round }}</h5>
+    <h5 class="display-5 text-primary">
+      <span v-if="over">Game Over</span>
+      <span v-else-if="round === 0">Ready</span>
+      <span v-else>Round - {{ round }}</span>
+    </h5>
 
     <div class="progress">
       <div

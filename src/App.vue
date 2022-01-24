@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, reactive, watch, computed } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import ProgressBar from './components/ProgressBar.vue'
 import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
@@ -11,18 +11,24 @@ import { Game, MOVES } from './game';
 const game = reactive(new Game());
 
 // assign vars
-const round = ref(1);
-const progress = ref(10)
+const over = ref(false);
+const round = ref(0);
+const progress = ref(0);
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
 
 watch(game, () => {
-  // bugfix: workaround for ref(game.message) issue!
-  message.value = game.message;
+  // bugfix: workaround for ref(<primitive type>) issue!
+  over.value = game.over;
   round.value = game.round;
   progress.value = game.progress;
+  message.value = game.message;
 })
+
+function onStart() {
+  game.start();
+}
 
 function onChoose(move: string) {
   game.playRound(move as any);
@@ -37,9 +43,9 @@ function onChoose(move: string) {
 
       <hr class="mb-5" />
 
-      <ProgressBar class="mb-3" v-bind="{ round, progress }" />
+      <ProgressBar class="mb-3" v-bind="{ over, round, progress }" />
 
-      <div class="row align-items-center justify-content-between">
+      <div class="row align-items-center justify-content-between mb-3">
         <!-- player1 info -->
         <div class="col-6 col-md-3 order-md-1">
           <PlayerCard :player="player1" />
@@ -56,9 +62,15 @@ function onChoose(move: string) {
         </div>
       </div>
 
-      <div class="row justify-content-between">
-        <MessageBar :message="message" />
-      </div>
+      <!-- Footer -->
+      <footer>
+        <button
+          v-if="round === 0 || over"
+          class="btn btn-lg btn-primary py-3 px-5"
+          @click="onStart"
+        >Start a New Game!</button>
+        <MessageBar v-else :message="message" />
+      </footer>
     </div>
   </main>
 </template>

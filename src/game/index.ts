@@ -7,13 +7,21 @@ export * from './moves';
 export * from './player';
 export * from './messages';
 
+// GAME STATES
+// - ready (initial state)
+// - started
+// - done
+
 export class Game {
-    round = 1;
+    round = 0; // ready;
     roundLimit = 10;
     message = INITIAL_MESSAGE;
     player1: Player = USER;
     player2: Player = COMPUTER;
-    over = false;
+
+    get over() {
+        return this.round != 0 && this.round > this.roundLimit;
+    }
 
     get isLastRound() {
         return this.round === this.roundLimit;
@@ -21,6 +29,14 @@ export class Game {
 
     get progress() {
         return (100 / this.roundLimit) * this.round;
+    }
+
+    start() {
+        // init state
+        this.round = 1;
+        this.player1.reset();
+        this.player2.reset();
+        this.message = INITIAL_MESSAGE;
     }
 
     makeMove(playerId: PlayerId, move: Move) {
@@ -36,15 +52,8 @@ export class Game {
         this.makeMove('player2', randomMove());
 
         this.processRound();
-        this.nextRound();
-    }
 
-    private nextRound() {
-        if (this.isLastRound) {
-            this.over = true; // game over
-        } else {
-            this.round++; // continue
-        }
+        this.round++; // continue
     }
 
     private processRound() {
