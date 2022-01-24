@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { Player } from '../game/player'
+import { Player } from '../game'
 
 defineProps<{ player: Player }>()
 

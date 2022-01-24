@@ -4,6 +4,7 @@ import { Player, PlayerId, USER, COMPUTER } from './player';
 import { getRoundMessage, getGameMessage, INITIAL_MESSAGE } from './messages';
 
 export * from './moves';
+export * from './player';
 
 export class Game {
     round = 1;
