@@ -57,6 +57,7 @@ function onPlay(move: string) {
             v-for="move in MOVES"
             :key="move"
             :move="move"
+            :disabled="round === 0 || over"
             @click="onPlay(move)"
             class="mx-1"
           />
