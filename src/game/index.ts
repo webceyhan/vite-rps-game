@@ -1,9 +1,9 @@
 import { Status } from './status';
-import { Move, randomMove } from './move';
+import { Move, randomMove } from './moves';
 import { Player, PlayerId, USER, COMPUTER } from './player';
 import { getRoundMessage, getGameMessage, INITIAL_MESSAGE } from './messages';
 
-export * from './move';
+export * from './moves';
 
 export class Game {
     round = 1;

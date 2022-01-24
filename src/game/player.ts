@@ -1,5 +1,5 @@
 import { Status } from './status';
-import { Move, compareMoves } from './move';
+import { Move, compareMoves } from './moves';
 import { compare } from '../utils';
 
 export class Player {
