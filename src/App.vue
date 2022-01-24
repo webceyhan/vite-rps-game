@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref, reactive, watch, computed } from 'vue'
+import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
 import { Game, MOVES } from './game';
 
@@ -46,13 +47,7 @@ function onChoose(move: string) {
       <div class="row align-items-center justify-content-between">
         <!-- player1 info -->
         <div class="col-6 col-md-3 order-md-1">
-          <div class="card bg-secondary text-white">
-            <div class="card-body">
-              <h4>{{ player1.name }}</h4>
-              <p class="display-3">{{ player1.score }}</p>
-              <p class="text-capitalize bg-dark m-0">{{ player1.move }}</p>
-            </div>
-          </div>
+          <PlayerCard :player="player1" />
         </div>
 
         <!-- game buttons -->
@@ -62,13 +57,7 @@ function onChoose(move: string) {
 
         <!-- player2 info -->
         <div class="col-6 col-md-3 order-md-3">
-          <div class="card bg-secondary text-white">
-            <div class="card-body">
-              <h4>{{ player2.name }}</h4>
-              <p class="display-3">{{ player2.score }}</p>
-              <p class="text-capitalize bg-dark m-0">{{ player2.move }}</p>
-            </div>
-          </div>
+          <PlayerCard :player="player2" />
         </div>
       </div>
 
