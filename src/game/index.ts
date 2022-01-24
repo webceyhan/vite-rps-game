@@ -7,7 +7,7 @@ export * from './move';
 
 export class Game {
     round = 1;
-    roundLimit = 5;
+    roundLimit = 10;
     message = INITIAL_MESSAGE;
     player1: Player = USER;
     player2: Player = COMPUTER;
