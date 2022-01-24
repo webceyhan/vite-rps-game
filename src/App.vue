@@ -1,8 +1,8 @@
 <script setup lang="ts">
 
 import { ref, reactive, watch, computed } from 'vue'
+import MoveButton from './components/MoveButton.vue'
 import { Game, MOVES } from './game';
-import {rootUrl } from './utils';
 
 // initialize game
 const game = reactive(new Game());
@@ -57,14 +57,7 @@ function onChoose(move: string) {
 
         <!-- game buttons -->
         <div class="col-12 col-md-6 d-flex order-1 order-md-2 py-5">
-          <button
-            v-for="move in MOVES"
-            :key="move"
-            @click="onChoose(move)"
-            class="btn btn-primary btn-img rounded-circle p-2 mx-2"
-          >
-            <img :src="rootUrl(`assets/${move}.png`)" class="img-fluid rounded-circle" />
-          </button>
+          <MoveButton v-for="move in MOVES" :key="move" :move="move" @click="onChoose(move)" />
         </div>
 
         <!-- player2 info -->
