@@ -2,6 +2,7 @@
 
 import { ref, reactive, watch, computed } from 'vue'
 import { Game, MOVES } from './game';
+import {rootUrl } from './utils';
 
 // initialize game
 const game = reactive(new Game());
@@ -62,7 +63,7 @@ function onChoose(move: string) {
             @click="onChoose(move)"
             class="btn btn-primary btn-img rounded-circle p-2 mx-2"
           >
-            <img :src="`/src/assets/${move}.png`" class="img-fluid rounded-circle" />
+            <img :src="rootUrl(`assets/${move}.png`)" class="img-fluid rounded-circle" />
           </button>
         </div>
 
