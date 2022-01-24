@@ -11,7 +11,7 @@ const round = ref(1);
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
-const progress = computed(() => `${(100 / 5) * round.value}%`);
+const progress = computed(() => `${(100 / game.roundLimit) * round.value}%`);
 
 watch(game, () => {
   // bugfix: workaround for ref(game.message) issue!
