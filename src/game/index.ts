@@ -10,20 +10,31 @@ export class Game {
     message = 'start playing..';
     player1: Player = USER;
     player2: Player = COMPUTER;
+    over = false;
+
+    get isLastRound() {
+        return this.round === this.roundLimit;
+    }
 
     makeMove(playerId: PlayerId, move: Move) {
         this[playerId].move = move;
     }
 
     playRound(move: Move) {
+        // quit if game over
+        if (this.over) return;
+
         // set player moves
         this.makeMove('player1', move);
         this.makeMove('player2', randomMove());
 
         this.processRound();
 
-        // next round
-        this.round++;
+        // next round if continues
+        this.isLastRound || this.round++;
+
+        // set game over if last round
+        this.isLastRound && (this.over = true);
     }
 
     private processRound() {
