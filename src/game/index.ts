@@ -19,6 +19,10 @@ export class Game {
         return this.round === this.roundLimit;
     }
 
+    get progress() {
+        return (100 / this.roundLimit) * this.round;
+    }
+
     makeMove(playerId: PlayerId, move: Move) {
         this[playerId].move = move;
     }

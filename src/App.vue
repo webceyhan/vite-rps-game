@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref, reactive, watch, computed } from 'vue'
+import ProgressBar from './components/ProgressBar.vue'
 import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
 import MessageBar from './components/MessageBar.vue'
@@ -11,16 +12,16 @@ const game = reactive(new Game());
 
 // assign vars
 const round = ref(1);
+const progress = ref(10)
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
-const progress = computed(() => `${(100 / game.roundLimit) * round.value}%`);
 
 watch(game, () => {
   // bugfix: workaround for ref(game.message) issue!
   message.value = game.message;
-  // messageColor.value = game.messageColor;
   round.value = game.round;
+  progress.value = game.progress;
 })
 
 function onChoose(move: string) {
@@ -36,14 +37,7 @@ function onChoose(move: string) {
 
       <hr class="mb-5" />
 
-      <h5 class="display-5">Round {{ round }}</h5>
-
-      <div class="progress">
-        <div
-          class="progress-bar progress-bar-striped progress-bar-animated"
-          :style="{ width: progress }"
-        ></div>
-      </div>
+      <ProgressBar class="mb-3" v-bind="{ round, progress }" />
 
       <div class="row align-items-center justify-content-between">
         <!-- player1 info -->
