@@ -20,10 +20,13 @@ export class Game {
         this.makeMove('player1', move);
         this.makeMove('player2', randomMove());
 
-        this.nextRound();
+        this.processRound();
+
+        // next round
+        this.round++;
     }
 
-    nextRound() {
+    private processRound() {
         // compare moves in behalf of player1
         const { moveStatus, scoreStatus, messagePerRound, messagePerGame } =
             this.player1.compareTo(this.player2);
@@ -42,8 +45,5 @@ export class Game {
         // set status message depending on the game state
         const lastRound = this.round === this.roundLimit;
         this.message = lastRound ? messagePerGame : messagePerRound;
-
-        // increase
-        this.round++;
     }
 }
