@@ -29,12 +29,15 @@ export class Game {
         this.makeMove('player2', randomMove());
 
         this.processRound();
+        this.nextRound();
+    }
 
-        // next round if continues
-        this.isLastRound || this.round++;
-
-        // set game over if last round
-        this.isLastRound && (this.over = true);
+    private nextRound() {
+        if (this.isLastRound) {
+            this.over = true; // game over
+        } else {
+            this.round++; // continue
+        }
     }
 
     private processRound() {
@@ -54,7 +57,6 @@ export class Game {
         }
 
         // set status message depending on the game state
-        const lastRound = this.round === this.roundLimit;
-        this.message = lastRound ? messagePerGame : messagePerRound;
+        this.message = this.isLastRound ? messagePerGame : messagePerRound;
     }
 }
