@@ -46,9 +46,11 @@ export class Game {
         // set round busy flag
         this.roundAwaiting = true;
 
+        // clear message
+        this.message = null as any;
+
         // set player moves
         await this.makeMove('player1', move);
-
         await this.makeMove('player2', randomMove());
 
         // process round

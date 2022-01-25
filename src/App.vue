@@ -93,7 +93,7 @@ function onPlay(move: string) {
     </template>
 
     <template #footer>
-      <message v-if="round != 0" :message="message" class="mb-4" />
+      <message v-if="message" :message="message" class="mb-4" />
 
       <button
         v-if="round === 0 || over"
