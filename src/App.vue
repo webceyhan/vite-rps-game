@@ -47,14 +47,14 @@ function onPlay(move: string) {
 
       <progress-bar class="mb-3" v-bind="{ over, round, progress }" />
 
-      <div class="row align-items-center justify-content-between mb-3">
+      <div class="row align-items-center justify-content-between g-4">
         <!-- player1 info -->
         <div class="col-6 col-md-3 order-md-1">
           <player-card :player="player1" />
         </div>
 
         <!-- game controls -->
-        <div class="col-12 col-md-6 d-flex justify-content-center order-1 order-md-2 py-5">
+        <div class="col-12 col-md-6 d-flex justify-content-center order-1 order-md-2">
 
           <!-- spinner -->
           <div
