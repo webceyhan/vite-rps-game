@@ -39,23 +39,24 @@ function onPlay(move: string) {
 </script>
 
 <template>
-  <main class="py-5 p-md-5">
-    <div class="container-fluid text-center">
-      <h1 class="display-1">Rock Paper Scissors</h1>
+  <!-- Header -->
+  <header class="bg-light bg-opacity-10 text-light text-center p-3 mb-4">
+    <h1 class="display-3 m-0">Rock Paper Scissors</h1>
+  </header>
 
-      <hr class="mb-5" />
+  <div class="container text-center">
+    <progress-bar class="mb-4" v-bind="{ over, round, progress }" />
 
-      <progress-bar class="mb-3" v-bind="{ over, round, progress }" />
-
+    <!-- Info / Controls -->
+    <main class="mb-4">
       <div class="row align-items-center justify-content-between g-4">
         <!-- player1 info -->
-        <div class="col-6 col-md-3 order-md-1">
+        <div class="col-6 col-lg-3 order-lg-1">
           <player-card :player="player1" />
         </div>
 
         <!-- game controls -->
-        <div class="col-12 col-md-6 d-flex justify-content-center order-1 order-md-2">
-
+        <div class="col-12 col-lg-6 d-flex justify-content-center order-1 order-lg-2">
           <!-- spinner -->
           <div
             v-if="roundAwaiting"
@@ -73,26 +74,27 @@ function onPlay(move: string) {
               :move="move"
               :disabled="round === 0 || over"
               @click="onPlay(move)"
-              class="mx-1"
+              class="mx-1 mx-md-4"
             />
           </template>
         </div>
 
         <!-- player2 info -->
-        <div class="col-6 col-md-3 order-md-3">
+        <div class="col-6 col-lg-3 order-lg-3">
           <player-card :player="player2" />
         </div>
       </div>
+    </main>
 
-      <!-- Footer -->
-      <footer>
-        <message-bar v-if="round != 0" :message="message" class="mb-3" />
-        <button
-          v-if="round === 0 || over"
-          class="btn btn-lg btn-primary py-3 px-5"
-          @click="onStart"
-        >Start a New Game!</button>
-      </footer>
-    </div>
-  </main>
+    <!-- Footer -->
+    <footer>
+      <message-bar v-if="round != 0" :message="message" class="mb-4" />
+
+      <button
+        v-if="round === 0 || over"
+        class="btn btn-lg btn-primary py-3 px-5"
+        @click="onStart"
+      >Start a New Game!</button>
+    </footer>
+  </div>
 </template>

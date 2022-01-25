@@ -10,11 +10,11 @@ defineProps<{
 
 <template>
   <div>
-    <h5 class="display-5 text-primary">
+    <h1 class="display-6 text-primary">
       <span v-if="over">Game Over</span>
       <span v-else-if="round === 0">Ready</span>
       <span v-else>Round - {{ round }}</span>
-    </h5>
+    </h1>
 
     <div class="progress bg-white bg-opacity-10">
       <div
