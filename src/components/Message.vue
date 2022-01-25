@@ -7,5 +7,5 @@ defineProps<{ message: Message }>()
 </script>
 
 <template>
-  <h1 class="display-6" :class="message.color">{{ message.text }}</h1>
+  <h1 class="display-6" :class="`text-${message.color}`">{{ message.text }}</h1>
 </template>

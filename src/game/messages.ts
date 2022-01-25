@@ -1,9 +1,19 @@
 import { Status, STATUS_COLORS } from './status';
 
+export type Color =
+    | 'primary'
+    | 'secondary'
+    | 'info'
+    | 'success'
+    | 'warning'
+    | 'danger';
+
 export type Message = {
     text: string;
-    color: string;
+    color: Color;
 };
+
+
 
 const ROUND_MESSAGES = {
     [Status.Won]: 'You won!',
@@ -19,15 +29,15 @@ const GAME_MESSAGES = {
 
 export const INITIAL_MESSAGE: Message = {
     text: 'make your move...',
-    color: 'text-secondary',
+    color: 'secondary',
 };
 
 export const getRoundMessage = (status: Status): Message => ({
     text: ROUND_MESSAGES[status],
-    color: `text-${STATUS_COLORS[status]}`,
+    color: STATUS_COLORS[status] as any,
 });
 
 export const getGameMessage = (status: Status): Message => ({
     text: GAME_MESSAGES[status],
-    color: `text-${STATUS_COLORS[status]}`,
+    color: STATUS_COLORS[status] as any,
 });
