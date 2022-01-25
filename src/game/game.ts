@@ -36,7 +36,7 @@ export class Game {
     async makeMove(playerId: PlayerId, move: Move) {
         this[playerId].move = move;
 
-        await delayAsync();
+        await delayAsync(500);
     }
 
     async playRound(move: Move) {
