@@ -43,17 +43,17 @@ function onPlay(move: string) {
 
       <hr class="mb-5" />
 
-      <ProgressBar class="mb-3" v-bind="{ over, round, progress }" />
+      <progress-bar class="mb-3" v-bind="{ over, round, progress }" />
 
       <div class="row align-items-center justify-content-between mb-3">
         <!-- player1 info -->
         <div class="col-6 col-md-3 order-md-1">
-          <PlayerCard :player="player1" />
+          <player-card :player="player1" />
         </div>
 
         <!-- game buttons -->
         <div class="col-12 col-md-6 d-flex order-1 order-md-2 py-5">
-          <MoveButton
+          <move-button
             v-for="move in MOVES"
             :key="move"
             :move="move"
@@ -65,13 +65,13 @@ function onPlay(move: string) {
 
         <!-- player2 info -->
         <div class="col-6 col-md-3 order-md-3">
-          <PlayerCard :player="player2" />
+          <player-card :player="player2" />
         </div>
       </div>
 
       <!-- Footer -->
       <footer>
-        <MessageBar v-if="round != 0" :message="message" class="mb-3" />
+        <message-bar v-if="round != 0" :message="message" class="mb-3" />
         <button
           v-if="round === 0 || over"
           class="btn btn-lg btn-primary py-3 px-5"
