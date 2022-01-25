@@ -13,6 +13,7 @@ const game = reactive(new Game());
 // assign vars
 const over = ref(false);
 const round = ref(0);
+const roundAwaiting = ref(game.roundAwaiting)
 const progress = ref(0);
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
@@ -22,6 +23,7 @@ watch(game, () => {
   // bugfix: workaround for ref(<primitive type>) issue!
   over.value = game.over;
   round.value = game.round;
+  roundAwaiting.value = game.roundAwaiting;
   progress.value = game.progress;
   message.value = game.message;
 })
@@ -51,16 +53,29 @@ function onPlay(move: string) {
           <player-card :player="player1" />
         </div>
 
-        <!-- game buttons -->
-        <div class="col-12 col-md-6 d-flex order-1 order-md-2 py-5">
-          <move-button
-            v-for="move in MOVES"
-            :key="move"
-            :move="move"
-            :disabled="round === 0 || over"
-            @click="onPlay(move)"
-            class="mx-1"
-          />
+        <!-- game controls -->
+        <div class="col-12 col-md-6 d-flex justify-content-center order-1 order-md-2 py-5">
+
+          <!-- spinner -->
+          <div
+            v-if="roundAwaiting"
+            class="spinner-border text-primary"
+            style="width: 5rem; height: 5rem;"
+          >
+            <span class="visually-hidden">Loading...</span>
+          </div>
+
+          <!-- buttons -->
+          <template v-else>
+            <move-button
+              v-for="move in MOVES"
+              :key="move"
+              :move="move"
+              :disabled="round === 0 || over"
+              @click="onPlay(move)"
+              class="mx-1"
+            />
+          </template>
         </div>
 
         <!-- player2 info -->

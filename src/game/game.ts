@@ -12,6 +12,7 @@ import { delayAsync } from '../utils';
 export class Game {
     round = 0; // ready;
     roundLimit = 10;
+    roundAwaiting = false;
     message = INITIAL_MESSAGE;
     player1: Player = USER;
     player2: Player = COMPUTER;
@@ -41,6 +42,9 @@ export class Game {
     async playRound(move: Move) {
         // quit if game over
         if (this.over) return;
+
+        // set round busy flag
+        this.roundAwaiting = true;
 
         // set player moves
         await this.makeMove('player1', move);
@@ -91,6 +95,7 @@ export class Game {
         this.player1.move = null as any;
         this.player2.move = null as any;
         this.message = INITIAL_MESSAGE;
+        this.roundAwaiting = false;
 
         this.round++;
     }
