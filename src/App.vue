@@ -5,7 +5,7 @@ import Layout from './components/Layout.vue';
 import ProgressBar from './components/ProgressBar.vue'
 import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
-import MessageBar from './components/MessageBar.vue'
+import Message from './components/Message.vue'
 import { Game, MOVES } from './game';
 
 // initialize game
@@ -82,7 +82,7 @@ function onPlay(move: string) {
     </template>
 
     <template #footer>
-      <message-bar v-if="round != 0" :message="message" class="mb-4" />
+      <message v-if="round != 0" :message="message" class="mb-4" />
 
       <button
         v-if="round === 0 || over"
