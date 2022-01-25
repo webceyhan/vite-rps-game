@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 import { ref, reactive, watch } from 'vue'
+import Layout from './components/Layout.vue';
 import ProgressBar from './components/ProgressBar.vue'
 import PlayerCard from './components/PlayerCard.vue'
 import MoveButton from './components/MoveButton.vue'
@@ -44,50 +45,43 @@ function onPlay(move: string) {
     <h1 class="display-3 m-0">Rock Paper Scissors</h1>
   </header>
 
-  <div class="container text-center">
-    <progress-bar class="mb-4" v-bind="{ over, round, progress }" />
+  <layout>
+    <template #header>
+      <progress-bar v-bind="{ over, round, progress }" />
+    </template>
 
-    <!-- Info / Controls -->
-    <main class="mb-4">
-      <div class="row align-items-center justify-content-between g-4">
-        <!-- player1 info -->
-        <div class="col-6 col-lg-3 order-lg-1">
-          <player-card :player="player1" />
-        </div>
+    <template #player1>
+      <player-card :player="player1" />
+    </template>
 
-        <!-- game controls -->
-        <div class="col-12 col-lg-6 d-flex justify-content-center order-1 order-lg-2">
-          <!-- spinner -->
-          <div
-            v-if="roundAwaiting"
-            class="spinner-border text-primary"
-            style="width: 5rem; height: 5rem;"
-          >
-            <span class="visually-hidden">Loading...</span>
-          </div>
+    <template #player2>
+      <player-card :player="player2" />
+    </template>
 
-          <!-- buttons -->
-          <template v-else>
-            <move-button
-              v-for="move in MOVES"
-              :key="move"
-              :move="move"
-              :disabled="round === 0 || over"
-              @click="onPlay(move)"
-              class="mx-1 mx-md-4"
-            />
-          </template>
-        </div>
-
-        <!-- player2 info -->
-        <div class="col-6 col-lg-3 order-lg-3">
-          <player-card :player="player2" />
-        </div>
+    <template #controls>
+      <!-- spinner -->
+      <div
+        v-if="roundAwaiting"
+        class="spinner-border text-primary"
+        style="width: 5rem; height: 5rem;"
+      >
+        <span class="visually-hidden">Loading...</span>
       </div>
-    </main>
 
-    <!-- Footer -->
-    <footer>
+      <!-- buttons -->
+      <template v-else>
+        <move-button
+          v-for="move in MOVES"
+          :key="move"
+          :move="move"
+          :disabled="round === 0 || over"
+          @click="onPlay(move)"
+          class="mx-1 mx-md-4"
+        />
+      </template>
+    </template>
+
+    <template #footer>
       <message-bar v-if="round != 0" :message="message" class="mb-4" />
 
       <button
@@ -95,6 +89,6 @@ function onPlay(move: string) {
         class="btn btn-lg btn-primary py-3 px-5"
         @click="onStart"
       >Start a New Game!</button>
-    </footer>
-  </div>
+    </template>
+  </layout>
 </template>
