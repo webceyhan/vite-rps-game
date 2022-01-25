@@ -9,11 +9,12 @@ export class Player {
         public move?: Move
     ) {}
 
-    compareTo({ move, score }: Player) {
-        return {
-            moveStatus: compareMoves(this.move as any, move as any),
-            scoreStatus: compare(this.score, score) as Status,
-        };
+    compareMoveTo({ move }: Player) {
+        return compareMoves(this.move as any, move as any);
+    }
+
+    compareScoreTo({ score }: Player) {
+        return compare(this.score, score) as Status;
     }
 
     reset() {

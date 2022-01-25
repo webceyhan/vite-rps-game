@@ -2,11 +2,12 @@ import { Status } from './status';
 import { Move, randomMove } from './moves';
 import { Player, PlayerId, USER, COMPUTER } from './player';
 import { getRoundMessage, getGameMessage, INITIAL_MESSAGE } from './messages';
+import { delayAsync } from '../utils';
 
 // GAME STATES
 // - ready (initial state)
 // - started
-// - done
+// - over
 
 export class Game {
     round = 0; // ready;
@@ -17,10 +18,6 @@ export class Game {
 
     get over() {
         return this.round != 0 && this.round > this.roundLimit;
-    }
-
-    get isLastRound() {
-        return this.round === this.roundLimit;
     }
 
     get progress() {
@@ -35,31 +32,37 @@ export class Game {
         this.message = INITIAL_MESSAGE;
     }
 
-    makeMove(playerId: PlayerId, move: Move) {
+    async makeMove(playerId: PlayerId, move: Move) {
         this[playerId].move = move;
+
+        await delayAsync();
     }
 
-    playRound(move: Move) {
+    async playRound(move: Move) {
         // quit if game over
         if (this.over) return;
 
         // set player moves
-        this.makeMove('player1', move);
-        this.makeMove('player2', randomMove());
+        await this.makeMove('player1', move);
 
-        this.processRound();
+        await this.makeMove('player2', randomMove());
 
-        this.round++; // continue
+        // process round
+        await this.processRound();
+
+        // continue
+        this.nextRound();
+
+        // finalize if game over
+        this.over && this.finalizeGame();
     }
 
-    private processRound() {
+    private async processRound() {
         // compare moves in behalf of player1
-        const { moveStatus, scoreStatus } = this.player1.compareTo(
-            this.player2
-        );
+        const status = this.player1.compareMoveTo(this.player2);
 
-        // process player scores
-        switch (moveStatus) {
+        // process scores
+        switch (status) {
             case Status.Won:
                 this.player1.score++;
                 break;
@@ -69,9 +72,26 @@ export class Game {
                 break;
         }
 
-        // set status message
-        this.message = this.isLastRound
-            ? getGameMessage(scoreStatus)
-            : getRoundMessage(moveStatus);
+        // set round status message
+        this.message = getRoundMessage(status);
+
+        await delayAsync();
+    }
+
+    private finalizeGame() {
+        // compare scores in behalf of player1
+        const status = this.player1.compareScoreTo(this.player2);
+
+        // set game status message
+        this.message = getGameMessage(status);
+    }
+
+    private nextRound() {
+        // clear previous round data
+        this.player1.move = null as any;
+        this.player2.move = null as any;
+        this.message = INITIAL_MESSAGE;
+
+        this.round++;
     }
 }

@@ -71,12 +71,12 @@ function onPlay(move: string) {
 
       <!-- Footer -->
       <footer>
+        <MessageBar v-if="round != 0" :message="message" class="mb-3" />
         <button
           v-if="round === 0 || over"
           class="btn btn-lg btn-primary py-3 px-5"
           @click="onStart"
         >Start a New Game!</button>
-        <MessageBar v-else :message="message" />
       </footer>
     </div>
   </main>

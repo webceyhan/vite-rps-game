@@ -18,7 +18,7 @@ const GAME_MESSAGES = {
 };
 
 export const INITIAL_MESSAGE: Message = {
-    text: 'start playing...',
+    text: 'make your move...',
     color: 'text-secondary',
 };
 
