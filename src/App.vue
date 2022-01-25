@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, watch, computed } from 'vue'
 import Layout from './components/Layout.vue';
 import ProgressBar from './components/ProgressBar.vue'
 import PlayerCard from './components/PlayerCard.vue'
@@ -19,6 +19,16 @@ const progress = ref(0);
 const message = ref(game.message);
 const player1 = ref(game.player1); // user
 const player2 = ref(game.player2); // computer
+
+const headerMessage = computed(() => {
+  let text: string;
+
+  if (!round.value) text = 'Ready';
+  else if (over.value) text = 'Game Over!';
+  else text = `Round - ${round.value}`;
+
+  return { text, color: 'primary' } as any
+})
 
 watch(game, () => {
   // bugfix: workaround for ref(<primitive type>) issue!
@@ -47,6 +57,7 @@ function onPlay(move: string) {
 
   <layout>
     <template #header>
+      <message :message="headerMessage" />
       <progress-bar v-bind="{ over, round, progress }" />
     </template>
 
