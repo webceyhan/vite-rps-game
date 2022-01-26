@@ -13,8 +13,6 @@ export type Message = {
     color: Color;
 };
 
-
-
 const ROUND_MESSAGES = {
     [Status.Won]: 'You won!',
     [Status.Even]: "It's a tie!",
