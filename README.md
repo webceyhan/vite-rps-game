@@ -9,7 +9,7 @@
 This is a single-play implementation of the famous Rock-Paper-Scissors game.
 
 The application is built with Vite + Vue 3 + Bootstrap and written in TypeScript.
-There is no need for backend server as it's only works in single-play mode against the computer.
+There is no need for backend server as it only works in single-play mode against the computer.
 
 [View Demo](https://ceyhan.io/rock-paper-scissors-game/) |
 [Report Issue](https://github.com/webceyhan/rock-paper-scissors-game/issues) |
