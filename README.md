@@ -4,11 +4,6 @@
 
 # Rock Paper Scissors Game
 
-<p style="background: #fff">
-<img src="./src/assets/rules.png" >
-<!-- ![Logo](./src/assets/rules.png) -->
-</p>
-
 <!-- Description -->
 
 This is a single-play implementation of the famous Rock-Paper-Scissors game.
@@ -76,6 +71,9 @@ npm run dev             # start development server
 npm run build           # build for production
 npm run preview         # preview built app
 ```
+
+### Game Rules
+![Rules](./src/assets/rules.png)
 
 <br>
 <!-- Deploy -->
