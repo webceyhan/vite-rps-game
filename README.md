@@ -3,10 +3,6 @@
 [![CodeQL](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml)
 [![Build and Deploy](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml)
 
-<!-- LOGO (OPTIONAL) -->
-
-<img src="./src/assets/screenshot.png">
-
 <!-- HEADER ///////////////////////////////////////////////////////////// -->
 
 # Rock Paper Scissors Game
