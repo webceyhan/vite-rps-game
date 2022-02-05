@@ -1,7 +1,7 @@
 <!-- AUTOMATION BADGES -->
 
-[![CodeQL](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml)
-[![Build and Deploy](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml)
+[![CodeQL](https://github.com/webceyhan/vite-rps-game/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/webceyhan/vite-rps-game/actions/workflows/codeql-analysis.yml)
+[![Build and Deploy](https://github.com/webceyhan/vite-rps-game/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/webceyhan/vite-rps-game/actions/workflows/build-and-deploy.yml)
 
 <!-- HEADER ///////////////////////////////////////////////////////////// -->
 
@@ -12,9 +12,9 @@ This is a single-play implementation of the famous Rock-Paper-Scissors game.
 The application is built with Vite + Vue 3 + Bootstrap and written in TypeScript.
 There is no need for backend server as it only works in single-play mode against the computer.
 
-[View Demo](https://ceyhan.io/rock-paper-scissors-game/) |
-[Report Issue](https://github.com/webceyhan/rock-paper-scissors-game/issues) |
-[Request Feature](https://github.com/webceyhan/rock-paper-scissors-game/pulls) |
+[View Demo](https://ceyhan.io/vite-rps-game/) |
+[Report Issue](https://github.com/webceyhan/vite-rps-game/issues) |
+[Request Feature](https://github.com/webceyhan/vite-rps-game/pulls) |
 [@webceyhan](https://twitter.com/webceyhan)
 
 <br>
@@ -34,11 +34,11 @@ You need to install the [Node.js](https://nodejs.dev/) and `npm` package manager
 
 1. Clone the repository.
     ```sh
-    git clone https://github.com/webceyhan/rock-paper-scissors-game.git
+    git clone https://github.com/webceyhan/vite-rps-game.git
     ```
 2. Get inside the cloned project folder.
     ```sh
-    cd rock-paper-scissors-game
+    cd vite-rps-game
     ```
 3. Install NPM packages.
     ```sh
