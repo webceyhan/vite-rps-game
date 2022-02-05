@@ -1,11 +1,11 @@
+<!-- AUTOMATION BADGES -->
+
 [![CodeQL](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/codeql-analysis.yml)
 [![Build and Deploy](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml/badge.svg)](https://github.com/webceyhan/rock-paper-scissors-game/actions/workflows/build-and-deploy.yml)
 
- <!-- Title -->
+<!-- HEADER ///////////////////////////////////////////////////////////// -->
 
 # Rock Paper Scissors Game
-
-<!-- Description -->
 
 This is a single-play implementation of the famous Rock-Paper-Scissors game.
 
@@ -18,32 +18,17 @@ There is no need for backend server as it only works in single-play mode against
 [@webceyhan](https://twitter.com/webceyhan)
 
 <br>
-<!-- Built With -->
+<!-- REQUIREMENTS /////////////////////////////////////////////////////// -->
 
-## Built With
+## Requirements
 
--   [Node.js](https://nodejs.dev/)
--   [Vite](https://vitejs.dev/)
--   [Vue.js](https://vuejs.org/)
--   [Bootstrap](https://getbootstrap.com)
--   [TypeScript](https://www.typescriptlang.org/)
+You need to install the [Node.js](https://nodejs.dev/) and `npm` package manager first.
 
-<br>
-<!-- Prerequisites -->
-
-## Prerequisites
-
-You need to install the [Node.js](https://nodejs.dev/) and npm package manager first.
-
-```sh
-npm install npm@latest -g
-```
-
-> Recommended IDE settings:
+> Recommended IDE:
 > [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar)
 
 <br>
-<!-- Installation -->
+<!-- INSTALLATION //////////////////////////////////////////////////////// -->
 
 ## Installation
 
@@ -53,7 +38,7 @@ npm install npm@latest -g
     ```
 2. Get inside the cloned project folder.
     ```sh
-    cd <project folder>
+    cd rock-paper-scissors-game
     ```
 3. Install NPM packages.
     ```sh
@@ -61,7 +46,7 @@ npm install npm@latest -g
     ```
 
 <br>
-<!-- Usage Examples -->
+<!-- USAGE /////////////////////////////////////////////////////////////// -->
 
 ## Usage
 
@@ -70,62 +55,66 @@ You can use following commands to do various task with the project.
 ```sh
 npm run dev             # start development server
 npm run build           # build for production
-npm run preview         # preview built app
+npm run preview         # preview built application
 ```
 
+> Take a look at the other scripts in [`package.json`](./package.json)
+
+<br>
+
 ### Game Rules
+
 ![Rules](./src/assets/rules.png)
 
 <br>
-<!-- Deploy -->
+<!-- DEVELOPMENT ///////////////////////////////////////////////////////// -->
 
-## Deploy (GitGub Pages)
+## Development
 
-There is a built-in Github Action which automatically deploys the project to Github Pages on every push.
+Start the development server to watch changes while you code.
 
-The workflow below, will checkout the master branch first, then build the project using npm and outputs the result to the `dist` folder.
-Afterwards, the contents will be deployed to the `gh-pages` branch.
-
-```yaml
-name: Build and Deploy
-on:
-push:
-    branches:
-    - master
-jobs:
-build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-        uses: actions/checkout@v2
-
-    - name: Install and Build
-        run: |
-        npm ci
-        npm run build
-
-    - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4.2.2
-        with:
-        branch: gh-pages # The branch the action should deploy to.
-        folder: dist # The folder the action should deploy.
+```sh
+npm run dev
 ```
 
 <br>
-<!-- Roadmap -->
+<!-- BUILDING //////////////////////////////////////////////////////////// -->
 
-## Roadmap
+## Building
 
--   [ ] Improve state management
--   [ ] Add multiplay support using WebSockets
+Build the application for production.
 
-> See the [open issues](https://github.com/webceyhan/rock-paper-scissors-game/issues) for a full list of proposed features (and known issues).
+```sh
+npm run build
+```
+
+You can also preview the application after building it.
+
+```sh
+npm run preview
+```
 
 <br>
-<!-- Acknowledgments -->
+<!-- DEPLOYMENT ////////////////////////////////////////////////////////// -->
 
-## Acknowledgments
+## Deployment (GitHub Pages)
 
--   Project hosted on [GitHub Pages](https://pages.github.com/)
--   Project deployed with [GitHub Actions](https://docs.github.com/en/actions)
-    -   using [github-pages-deploy-action](https://github.com/JamesIves/github-pages-deploy-action)
+A GitHub Action will automatically deploy the project to GitHub Pages on every push.
+
+The workflow will build the project using npm and output the result to the `dist` folder which will be then pushed to the `gh-pages` branch.
+
+> See the details in [.github/workflows/build-and-deploy.yml](./.github/workflows/build-and-deploy.yml)
+
+<br>
+<!-- REFERENCES ////////////////////////////////////////////////////////// -->
+
+## References
+
+-   [Node.js](https://nodejs.dev/)
+-   [Vite](https://vitejs.dev/)
+-   [Vue.js](https://vuejs.org/)
+-   [Bootstrap](https://getbootstrap.com)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [GitHub Actions](https://docs.github.com/en/actions)
+    -   [GitHub Pages](https://pages.github.com/)
+    -   [github-pages-deploy-action](https://github.com/JamesIves/)
