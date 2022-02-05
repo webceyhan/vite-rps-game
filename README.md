@@ -50,6 +50,8 @@ You need to install the [Node.js](https://nodejs.dev/) and `npm` package manager
 
 ## Usage
 
+![Rules](./src/assets/rules.png)
+
 You can use following commands to do various task with the project.
 
 ```sh
@@ -62,11 +64,6 @@ npm run preview         # preview built application
 
 <br>
 
-### Game Rules
-
-![Rules](./src/assets/rules.png)
-
-<br>
 <!-- DEVELOPMENT ///////////////////////////////////////////////////////// -->
 
 ## Development
