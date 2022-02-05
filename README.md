@@ -5,7 +5,7 @@
 
 <!-- HEADER ///////////////////////////////////////////////////////////// -->
 
-# Rock Paper Scissors Game
+# Vite Rock-Paper-Scissors Game
 
 This is a single-play implementation of the famous Rock-Paper-Scissors game.
 
